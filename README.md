@@ -138,6 +138,14 @@ Two components communicate through a JSON protocol.
 - `render.lua` — opens a centered floating window, draws the proportional bit map and field detail table, and applies highlight groups
 - `health.lua` — implements `:checkhealth bitfield` to verify the binary, libclang, and Neovim version
 
+
+FULL EXAMPLE OUTPUT:
+
+| | |
+|---|---|
+| <img width="450" src="https://github.com/user-attachments/assets/ad3465e4-2f0d-459b-8471-bad8ec17f2a0" /> | <img width="450" src="https://github.com/user-attachments/assets/ed9c9400-6d55-4d8e-bd17-de77801279fb" /> |
+| <img width="450" src="https://github.com/user-attachments/assets/1d331e78-4050-4c10-9244-b79418b4a43f" /> | <img width="450" src="https://github.com/user-attachments/assets/5f9dd84d-4ef8-4ab6-bcb6-d1294a830615" /> |
+
 ---
 
 ## Limitations
