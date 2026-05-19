@@ -1,1 +1,1 @@
-# NeoVim-Bitfields
+# bitfield.nvim
