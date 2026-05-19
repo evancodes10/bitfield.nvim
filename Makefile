@@ -30,7 +30,7 @@ else
 endif
 
 TARGET := bitfield-parse
-SRC := parse.c
+SRC := parser.c
  
 .PHONY: all clean install
  
