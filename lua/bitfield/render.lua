@@ -192,7 +192,7 @@ function M.open(struct_name, rows, reorder, total_bits)
         lines[#lines + 1] = "   " .. table.concat(reorder, ", ")
     elseif waste == 0 then
         lines[#lines + 1] = string.rep("─", W)
-        local ok = " ✓ Perfectly packed — no wasted bits."
+        local ok = " Perfectly packed."
         lines[#lines + 1] = ok
         hl(#lines - 1, 0, #ok, HI_GOOD)
     end
