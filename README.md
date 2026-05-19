@@ -104,7 +104,7 @@ let b:bitfield_cflags = "-I./include -std=c11"
 
 ```lua
 require("bitfield").setup({
-  keymap       = "zi",      -- set to false to disable
+  keymap       = "zi",
   win_width    = 70,
   max_height   = 40,
   border       = "rounded",
