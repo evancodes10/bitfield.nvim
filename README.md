@@ -25,3 +25,49 @@ To create this output, run `<leader>zi`, while your cursor is in the definition 
 ---
 
 ## Requirements
+
+- Neovim >= 0.9 with LuaJIT
+- libclang >= 14
+
+```bash
+# Ubuntu / Debian
+sudo apt install libclang-dev
+
+# Arch
+sudo pacman -S clang
+
+# Fedora
+sudo dnf install clang-devel
+
+# macOS
+brew install llvm
+```
+
+If libclang is installed in a non-standard location:
+
+```bash
+LLVM_PATH=/path/to/llvm make -C c/
+```
+---
+## Installation 
+
+### lazy.nvim
+```lua
+{
+  "evancodes10/bitfield.nvim",
+  build  = "make -C c/",
+  ft     = { "c", "cpp" },
+  config = function()
+    require("bitfield").setup()
+  end,
+}
+```
+
+### packer
+```lua
+use {
+  "evancodes10/bitfield.nvim",
+  run    = "make -C c/",
+  config = function() require("bitfield").setup() end,
+}
+```
