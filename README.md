@@ -71,3 +71,56 @@ use {
   config = function() require("bitfield").setup() end,
 }
 ```
+
+## Usage
+
+| Key / Command       | Action                                        |
+|---------------------|-----------------------------------------------|
+| `<leader>zi`        | Show layout for struct under cursor           |
+| `q` / `<Esc>`       | Close the floating window                     |
+| `j` / `k`           | Scroll (large structs)                        |
+| `:BitfieldShow`     | Same as the keymap                            |
+| `:BitfieldBuild`    | Compile `c/bitfield-parse` from source        |
+| `:BitfieldReload`   | Reload Lua modules after a local change       |
+| `:BitfieldDebug`    | Dump raw parser JSON at cursor position       |
+
+Because libclang parses the file on the disk, the buffer must be saved before triggering. 
+
+Run `:checkhealh bitfield` to verify the binary and libclang are accessible.
+
+---
+
+## Projects that include flags
+
+For projects that include specific paths, set a buffer-local variable:
+
+```vim
+let b:bitfield_cflags = "-I./include -std=c11"
+```
+
+---
+
+## Configuration
+
+```lua
+require("bitfield").setup({
+  keymap       = "zi",      -- set to false to disable
+  win_width    = 70,
+  max_height   = 40,
+  border       = "rounded",
+  show_reorder = true,
+})
+```
+
+### Highlight groups
+
+```lua
+vim.api.nvim_set_hl(0, "BitfieldField",  { bg = "#1e3a5f", fg = "#89d4f5", bold = true })
+vim.api.nvim_set_hl(0, "BitfieldBit",    { bg = "#1a4731", fg = "#7dd4a8", bold = true })
+vim.api.nvim_set_hl(0, "BitfieldPad",    { bg = "#4e4e4e", fg = "#bbbbbb", italic = true })
+vim.api.nvim_set_hl(0, "BitfieldHeader", { fg = "#e0af68", bold = true })
+vim.api.nvim_set_hl(0, "BitfieldWaste",  { fg = "#f7768e", bold = true })
+vim.api.nvim_set_hl(0, "BitfieldGood",   { fg = "#9ece6a", bold = true })
+```
+
+---
