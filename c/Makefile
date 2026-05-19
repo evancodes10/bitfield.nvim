@@ -37,8 +37,11 @@ SRC := parser.c
 all: $(TARGET)
 
 $(TARGET): $(SRC)
-	bear -- $(CC) $(CFLAGS) $(CLANG_INC) -o $@ $< $(CLANG_LIB)
+	$(CC) $(CFLAGS) $(CLANG_INC) -o $@ $< $(CLANG_LIB)
 
+compile_commands:
+	bear -- make clean all
+	
 clean:
 	rm -f $(TARGET) *.o
  

@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <inttypes.h>
 #include <clang-c/Index.h>
 #include "parser.h"
 
@@ -89,9 +91,9 @@ static void emit_json(FieldState *fs, const char *struct_name)
     {
         Field *f = &fs->fields[i];
         
-        printf("{\"name\":\"%s\",\"type\":\"%s\"," "\"is_bitfield\":%s,\"bit_width\":%d," "\"bit_offset\":%ld,\"byte_size\":%ld}%s\n", f->name, f->type, f->is_bitfield ? "true" : "false", f->bit_width, f->bit_offset, f->byte_size, (i < fs->count - 1) ? "," : "");
-    }
+        printf("{\"name\":\"%s\",\"type\":\"%s\",""\"is_bitfield\":%s,\"bit_width\":%d,""\"bit_offset\":%" PRId64 ",\"byte_size\":%" PRId64 "}%s\n",f->name,f->type,f->is_bitfield ? "true" : "false",f->bit_width,f->bit_offset,f->byte_size,(i < fs->count - 1) ? "," : "");
 
+    }
     printf("]}\n");
 }
 
