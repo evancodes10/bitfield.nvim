@@ -11,10 +11,10 @@ Above is an example of how a chess board struct used in a chess engine would beh
 
 To create this output, run <leader>zi, while your cursor is in the definition of a C struct. 
 
-*NOTE* This plugin only works with C structs. C++ structs are not supported.
+*NOTE*: This plugin only works with C structs. C++ structs are not supported.
 
 ---
-##Features
+## Features
 
 - ABI-accurate layout via libclang. Meaning these offsets are the same as what a C compiler would see.
 - Proportional bit map showing each fields position across the full struct width.
@@ -22,3 +22,6 @@ To create this output, run <leader>zi, while your cursor is in the definition of
 - Padding detection highlights wasted bits per gap with reorder suggestion.
 - Field Detail Table displaying the name, type spelling, bit range, and width for every field.
 - Works on both *.c* and *.h* files.
+---
+
+## Requirements
