@@ -124,3 +124,30 @@ vim.api.nvim_set_hl(0, "BitfieldGood",   { fg = "#9ece6a", bold = true })
 ```
 
 ---
+
+## How it works
+
+Two components communicate through a JSON protocol.
+
+`c/parser.c` is a standalone binary built against libclang. It accepts a file path, line, and column as arguments, walks the AST to find the struct at that position, and emits a JSON object containing each field's name, type of spelling, bit offset, declared bit width, and byte size. It has no runtime dependency on Neovim.
+
+`lua/bitfield/` is the Neovim side:
+
+- `init.lua` — resolves the binary path, invokes it as a subprocess, decodes the JSON response, and drives the layout and render modules
+- `layout.lua` — converts raw field offsets into display rows, detects padding gaps between fields, and produces a suggested reordering to eliminate waste
+- `render.lua` — opens a centered floating window, draws the proportional bit map and field detail table, and applies highlight groups
+- `health.lua` — implements `:checkhealth bitfield` to verify the binary, libclang, and Neovim version
+
+---
+
+## Limitations
+
+- C-style structs only; C++ classes are not supported
+- Bitfields inside anonymous nested structs are not recursed into
+- The buffer must be saved before triggering (libclang reads from disk)
+
+---
+
+## License
+
+MIT
