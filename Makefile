@@ -35,11 +35,10 @@ SRC := parser.c
 .PHONY: all clean install
  
 all: $(TARGET)
- 
+
 $(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(CLANG_INC) -o $@ $< $(CLANG_LIB)
-	@echo "built $(TARGET)"
- 
+	bear -- $(CC) $(CFLAGS) $(CLANG_INC) -o $@ $< $(CLANG_LIB)
+
 clean:
 	rm -f $(TARGET) *.o
  
