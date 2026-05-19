@@ -4,7 +4,7 @@
 #include <clang-c/Index.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdint.h>
 
 #define MAX_FIELDS 256
 #define MAX_NAME 128
@@ -15,8 +15,8 @@ typedef struct
     char name[MAX_NAME];
     char type[MAX_TYPE];
     int bit_width;
-    long bit_offset;
-    long byte_size;
+    int64_t bit_offset;
+    int64_t byte_size;
     int is_bitfield;
 } Field;
 
