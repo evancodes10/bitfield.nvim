@@ -9,7 +9,7 @@ A Neovim plugin that visualizes the bit-level memory layout of C structs in a fl
 
 Above is an example of how a chess board struct used in a chess engine would behave in the neovim floating window. 
 
-To create this output, run <leader>zi, while your cursor is in the definition of a C struct. 
+To create this output, run `<leader>zi`, while your cursor is in the definition of a C struct. 
 
 *NOTE*: This plugin only works with C structs. C++ structs are not supported.
 
@@ -21,7 +21,7 @@ To create this output, run <leader>zi, while your cursor is in the definition of
 - Displays declared widths alongside computed offsets.
 - Padding detection highlights wasted bits per gap with reorder suggestion.
 - Field Detail Table displaying the name, type spelling, bit range, and width for every field.
-- Works on both *.c* and *.h* files.
+- Works on both `.c` and `.h` files.
 ---
 
 ## Requirements
