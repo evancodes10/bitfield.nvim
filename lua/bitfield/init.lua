@@ -1,14 +1,13 @@
 -- lua/bitfield/init.lua
 -- Entry point for bitfield.nvim.
--- Wires together: C parser binary → layout.lua → render.lua
  
 local M = {}
  
 M.config = {
-    keymap       = "bf",   -- <leader>bf  (false to disable)
-    win_width    = 70,
-    max_height   = 40,
-    border       = "rounded",
+    keymap = "bf",
+    win_width = 70,
+    max_height = 40,
+    border = "rounded",
     show_reorder = true,
 }
  
@@ -18,8 +17,8 @@ local function bin_path()
     -- debug.getinfo gives us the path to THIS file:
     --   .../bitfield.nvim/lua/bitfield/init.lua
     -- Go up three levels to reach the plugin root.
-    local src = debug.getinfo(1, "S").source:sub(2)          -- strip leading "@"
-    local root = vim.fn.fnamemodify(src, ":h:h:h")           -- lua/bitfield → lua → plugin root
+    local src = debug.getinfo(1, "S").source:sub(2)
+    local root = vim.fn.fnamemodify(src, ":h:h:h")
     return root .. "/c/bitfield-parse"
 end
  
@@ -50,8 +49,6 @@ local function parse(filepath, line, col)
         return nil, "Parser exited with error:\n" .. raw
     end
  
-    -- The C binary emits either  []  (not inside a struct)
-    -- or  {"struct":"Name","fields":[...]}
     if raw:match("^%[%]") then
         return nil, "Cursor is not inside a struct or union definition."
     end
@@ -64,8 +61,6 @@ local function parse(filepath, line, col)
     return decoded, nil
 end
  
--- ── public API ────────────────────────────────────────────────────────
- 
 function M.show()
     local buf_path = vim.api.nvim_buf_get_name(0)
     if buf_path == "" then
@@ -73,7 +68,7 @@ function M.show()
         return
     end
  
-    -- Neovim cursor is 1-based (line, col); col is 0-based internally → add 1
+    -- Neovim cursor is 1-based (line, col); col is 0-based internally, add 1
     local cursor   = vim.api.nvim_win_get_cursor(0)
     local line     = cursor[1]
     local col      = cursor[2] + 1
@@ -87,7 +82,7 @@ function M.show()
     local layout  = require("bitfield.layout")
     local render  = require("bitfield.render")
  
-    local fields  = data.fields        -- raw field list from C parser
+    local fields  = data.fields
     local rows    = layout.compute(fields)
     local reorder = layout.suggest_reorder(fields)
  
@@ -127,8 +122,6 @@ function M.build()
         end,
     })
 end
- 
--- ── setup ─────────────────────────────────────────────────────────────
  
 function M.setup(user_opts)
     user_opts = user_opts or {}
